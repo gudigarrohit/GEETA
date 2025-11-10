@@ -1,6 +1,6 @@
 import React from "react";
-import Library from "./Library";
-import Controlbox from "./Controlbox";
+import Library from "./ui/Library";
+import Controlbox from "./ui/Controlbox";
 import { MdLibraryMusic } from "react-icons/md";
 import '../index.css';
 

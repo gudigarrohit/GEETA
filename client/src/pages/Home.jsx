@@ -23,30 +23,30 @@ function Home() {
   }, [API_URL]);
 
   const getSongs = async (albumFolder) => {
-  try {
-    setSelectedAlbum(albumFolder);
-    const res = await fetch(`${API_URL}/api/songs/${albumFolder}`);
-    if (!res.ok) throw new Error("Failed to fetch songs");
-    const data = await res.json();
+    try {
+      setSelectedAlbum(albumFolder);
+      const res = await fetch(`${API_URL}/api/songs/${albumFolder}`);
+      if (!res.ok) throw new Error("Failed to fetch songs");
+      const data = await res.json();
 
-    const songsList = (data.songs || data).map((song) => {
-      const name = song.name || song.file?.replace(".mp3", "") || "Unknown";
-      const file = song.file || `${name}.mp3`;
-      return {
-        ...song,
-        name,
-        file,
-        album: albumFolder, // ✅ needed
-        filePath: `/songs/${albumFolder}/${file}`, // ✅ needed
-      };
-    });
+      const songsList = (data.songs || data).map((song) => {
+        const name = song.name || song.file?.replace(".mp3", "") || "Unknown";
+        const file = song.file || `${name}.mp3`;
+        return {
+          ...song,
+          name,
+          file,
+          album: albumFolder, // ✅ needed
+          filePath: `/songs/${albumFolder}/${file}`, // ✅ needed
+        };
+      });
 
-    setSongs(songsList);
-  } catch (err) {
-    console.error("Error fetching songs:", err);
-    setError("Could not load songs");
-  }
-};
+      setSongs(songsList);
+    } catch (err) {
+      console.error("Error fetching songs:", err);
+      setError("Could not load songs");
+    }
+  };
 
 
   return (

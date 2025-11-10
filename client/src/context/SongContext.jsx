@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const SongContext = createContext();
 
@@ -8,6 +8,18 @@ export const SongProvider = ({ children }) => {
   const [selectedSong, setSelectedSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playingIndex, setPlayingIndex] = useState(null);
+  const [playlist, setPlaylist] = useState([]);
+  const [allAlbums, setAllAlbums] = useState([]);
+
+  // ✅ Sync selectedSong when playingIndex changes
+  useEffect(() => {
+    if (playingIndex !== null && playlist?.length > 0) {
+      setSelectedSong(playlist[playingIndex]);
+      setIsPlaying(true);
+      repeatOnePlayed.current = false;
+    }
+  }, [playingIndex, playlist]);
+
 
   return (
     <SongContext.Provider value={{
@@ -20,7 +32,11 @@ export const SongProvider = ({ children }) => {
       isPlaying,
       setIsPlaying,
       playingIndex,
-      setPlayingIndex
+      setPlayingIndex,
+      playlist,
+      setPlaylist,
+      allAlbums,
+      setAllAlbums
     }}>
       {children}
     </SongContext.Provider>
