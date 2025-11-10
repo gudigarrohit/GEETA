@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Fugaz+One&family=Lobster&family=Quicksand:wght@300..700&family=Roboto:ital@0;1&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+
+
+/* Smooth dark gray scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+  /* gray color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+  /* slightly lighter on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #444 transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.7);
+  border-radius: 8px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  background: #484a4a;
+  border: 2px solid white;
+  margin-top: -4.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Base track */
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  background: transparent;
+  /* we will draw it ourselves */
+}
+
+/* Track background + fill using CSS variable --progress */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 5px;
+  border-radius: 4px;
+  background: linear-gradient(to right,
+      #ffffff var(--progress),
+      #2c2a2a var(--progress));
+  transition: background 0.2s ease;
+}
+
+/* For Firefox */
+input[type="range"]::-moz-range-track {
+  height: 5px;
+  border-radius: 4px;
+  background: linear-gradient(to right,
+      #ffffff var(--progress),
+      #2c2a2a var(--progress));
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  transition: transform 0.25s ease, background 0.25s ease, border 0.25s ease;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.35); /* feel like Spotify */
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 5px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    #ffffff var(--progress),
+    #2c2a2a var(--progress)
+  );
+}
